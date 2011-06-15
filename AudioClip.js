@@ -1,20 +1,28 @@
 function AudioClip(audioFile) {
     this.audio = new Audio(audioFile);
     this.audioChannels = [];
-    this.length = audio.duration;
+    this.length = this.audio.duration;
 }
 
 AudioClip.prototype = {
     play: function(start, finish) {
         var i = 0;
-        while (this.audioChannels[i] != undefined) {i += 1}
-        currAudio = this.audioChannels[i];
-        currAudio = new Audio();
-        currAudio.src = this.audio.src;
-        if (start === undefined) {start = 0;}
-        if (finish === undefined) {finish = this.length;}
-        currAudio.play();
-        thisObj = this;
-        setTimeout(function() {thisObj.audioChannels.delete(i);}, finish);
+        while (this.audioChannels[i] !== undefined) {
+            if (this.audioChannels[i].ended) {break;}
+            i += 1;
+        }
+        if (this.audioChannels[i] === undefined) {
+            this.audioChannels[i] = this.audio.cloneNode();
+        }
+        if (start !== undefined) {
+            this.audioChannels[i].currentTime = start
+        }
+        if (finish !== undefined) {
+            thisObj = this;
+            setTimeout(function() {
+                thisObj.audioChannels[i].currentTime = 
+                thisObj.length;}, finish - thisOjb.audioChannels[i].currentTime);
+        }
+        this.audioChannels[i].play();
     }
 }
