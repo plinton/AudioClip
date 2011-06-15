@@ -1,0 +1,13 @@
+                       AudioClip.js
+
+
+AudioClip.js provides a simple object for playing audio, 
+potentially at the same time as itself. It comes with one 
+function, play, which offers two optional arguments: start 
+and finish, which start the audio at the specified time and 
+end it at the specified time (both in seconds). The purpose of 
+this object is to be used in situations such as games where an 
+sound effect might be used multiple times with potential overlap.
+
+Copyright (c) 2011, Paul Ellis Linton
+Released under the BSD license
