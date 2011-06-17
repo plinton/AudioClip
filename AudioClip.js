@@ -12,7 +12,7 @@ AudioClip.prototype = {
             i += 1;
         }
         if (this.audioChannels[i] === undefined) {
-            this.audioChannels[i] = this.audio.cloneNode();
+            this.audioChannels[i] = this.audio.cloneNode(true);
         }
         if (start !== undefined) {
             this.audioChannels[i].currentTime = start
